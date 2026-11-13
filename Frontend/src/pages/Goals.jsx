@@ -3,55 +3,69 @@ import { useNavigate } from 'react-router-dom';
 import { roles } from '../data/mockData';
 import { useProfile } from '../context/ProfileContext';
 import { ArrowRight, Target } from 'lucide-react';
-import { getCareers, setCareerGoal } from '../services/api';
+import { getCareers, getStudent, setCareerGoal } from '../services/api';
 
 export default function Goals() {
   const navigate = useNavigate();
   const { profile, updateProfile } = useProfile();
 
   const [careers, setCareers] = useState([]);
+  const [student, setStudent] = useState(null);
 
   useEffect(() => {
     async function loadData() {
       try {
-        const careersData = await getCareers();
+        const savedUser = localStorage.getItem('idp-user');
+
+        if (!savedUser) {
+          navigate('/login');
+          return;
+        }
+
+        const user = JSON.parse(savedUser);
+        const studentId = user.student_id;
+
+        const [careersData, studentData] = await Promise.all([
+          getCareers(),
+          getStudent(studentId)
+        ]);
+
         setCareers(careersData);
+        setStudent(studentData);
+
       } catch (error) {
         console.error(error);
       }
     }
 
     loadData();
-  }, []);
+  }, [navigate]);
 
   const chooseGoal = async (role) => {
-    const targetCareer = careers.find(
-      career => career.name === role.name
-    );
-
-    if (!targetCareer) {
-      alert('Career not found');
-      return;
-    }
 
     const savedUser = localStorage.getItem('idp-user');
 
     if (!savedUser) {
-      alert('Please login again');
       navigate('/login');
       return;
     }
 
     const user = JSON.parse(savedUser);
+    const studentId = user.student_id;
 
-    if (!user.student_id) {
-      alert('Student account not found');
+    const targetCareer = careers.find(
+      career => career.name === role.name
+    );
+
+    if (!targetCareer) {
+      alert('Target career not found');
       return;
     }
 
     try {
       await setCareerGoal({
-        student_id: user.student_id,
+        student_id: studentId,
+        current_career_id: student?.current_career_id,
         target_career_id: targetCareer.id
       });
 
@@ -91,6 +105,7 @@ export default function Goals() {
         }}
       >
         {roles.map((role) => {
+
           const active = profile.targetRole === role.name;
 
           return (
