@@ -1,4 +1,4 @@
-const API_URL = 'https://idp-recommendation-system.onrender.com';
+const API_URL = 'https://idp-recommendation-system-1.onrender.com';
 
 export async function getStudent(studentId) {
     const response = await fetch(`${API_URL}/students/${studentId}`);
