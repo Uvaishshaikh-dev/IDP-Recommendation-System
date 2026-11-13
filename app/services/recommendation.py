@@ -1,4 +1,4 @@
-from ..database.models import LearningResource, Skill
+from ..database.models import LearningResource
 
 
 def calculate_skill_gaps(student, career):
@@ -24,10 +24,7 @@ def calculate_skill_gaps(student, career):
                 "gap": gap
             })
 
-    gaps.sort(
-        key=lambda x: x["gap"],
-        reverse=True
-    )
+    gaps.sort(key=lambda x: x["gap"], reverse=True)
 
     return gaps
 
@@ -51,9 +48,7 @@ def calculate_readiness(student, career):
         total_score += min(current_level, required_level)
         total_possible += required_level
 
-    score = (total_score / total_possible) * 100
-
-    return round(score, 2)
+    return round((total_score / total_possible) * 100, 2)
 
 
 def get_recommended_resources(db, student, career):
@@ -62,10 +57,8 @@ def get_recommended_resources(db, student, career):
     recommendations = []
 
     for gap in gaps:
-        skill_id = gap["skill_id"]
-
         resources = db.query(LearningResource).filter(
-            LearningResource.skill_id == skill_id
+            LearningResource.skill_id == gap["skill_id"]
         ).all()
 
         for resource in resources:
