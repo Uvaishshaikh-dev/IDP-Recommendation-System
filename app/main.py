@@ -2,7 +2,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from .database.connection import SessionLocal
+from .database.connection import SessionLocal, Base, engine
+
 from .database.models import (
     Student,
     Skill,
@@ -15,6 +16,8 @@ from .database.models import (
     User
 )
 
+Base.metadata.create_all(bind=engine)
+
 from .services.recommendation import (
     calculate_skill_gaps,
     calculate_readiness,
@@ -24,7 +27,6 @@ from .services.recommendation import (
 from .services.roadmap import create_roadmap
 
 from .utils.security import verify_password, hash_password
-
 
 app = FastAPI(
     title="IDP Recommendation System API"
