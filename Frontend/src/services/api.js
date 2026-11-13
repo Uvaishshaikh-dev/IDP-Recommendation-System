@@ -54,7 +54,17 @@ export async function getRoadmap(studentId) {
     const response = await fetch(`${API_URL}/roadmap/${studentId}`);
 
     if (!response.ok) {
-        throw new Error("Failed to fetch roadmap");
+        const errorText = await response.text();
+
+        console.error(
+            "Roadmap API error:",
+            response.status,
+            errorText
+        );
+
+        throw new Error(
+            `Failed to fetch roadmap: ${response.status} ${errorText}`
+        );
     }
 
     return response.json();
