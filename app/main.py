@@ -16,8 +16,6 @@ from .database.models import (
     User
 )
 
-Base.metadata.create_all(bind=engine)
-
 from .services.recommendation import (
     calculate_skill_gaps,
     calculate_readiness,
@@ -28,9 +26,15 @@ from .services.roadmap import create_roadmap
 
 from .utils.security import verify_password, hash_password
 
+
 app = FastAPI(
     title="IDP Recommendation System API"
 )
+
+
+@app.on_event("startup")
+def startup():
+    Base.metadata.create_all(bind=engine)
 
 
 app.add_middleware(
@@ -45,14 +49,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class LoginRequest(BaseModel):
     email: str
     password: str
+
 
 class RegisterRequest(BaseModel):
     name: str
     email: str
     password: str
+
 
 class AssessmentItem(BaseModel):
     skill_id: int
@@ -68,7 +75,6 @@ class CareerGoalRequest(BaseModel):
     student_id: int
     current_career_id: int | None = None
     target_career_id: int
-
 
 @app.get("/")
 def home():
