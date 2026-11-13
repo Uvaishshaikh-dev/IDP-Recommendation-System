@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8001";
+const API_URL = 'https://idp-recommendation-system-1.onrender.com';
 
 export async function getStudent(studentId) {
     const response = await fetch(`${API_URL}/students/${studentId}`);
@@ -173,6 +173,11 @@ export async function registerUser(name, email, password) {
             password
         })
     });
+
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.detail || "Registration failed");
+    }
 
     return response.json();
 }
