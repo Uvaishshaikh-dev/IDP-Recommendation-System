@@ -1,6 +1,13 @@
+node_modules/
+dist/
+.vite/
+*.log
 .env
-.venv/
+.env.*
+!.env.example
+
 venv/
+.venv/
 __pycache__/
 *.pyc
 .vscode/

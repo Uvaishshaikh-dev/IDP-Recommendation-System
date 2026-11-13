@@ -269,51 +269,254 @@ db.commit()
 
 
 flashcards_data = [
+
+    # =========================
+    # JAVASCRIPT / TYPESCRIPT
+    # =========================
+
     (
         "What is a closure in JavaScript?",
-        "A closure is a function that remembers and can access variables from its outer scope.",
+        "A closure is a function that can access variables from its outer scope.",
         "Web Development",
         "JavaScript / TypeScript"
     ),
     (
-        "What is the difference between let and const in JavaScript?",
-        "let allows reassignment while const does not allow reassignment.",
+        "What is the difference between let and const?",
+        "let allows reassignment while const cannot be reassigned.",
         "Web Development",
         "JavaScript / TypeScript"
     ),
+    (
+        "What is a Promise in JavaScript?",
+        "A Promise represents the eventual result of an asynchronous operation.",
+        "Web Development",
+        "JavaScript / TypeScript"
+    ),
+    (
+        "What does async and await do?",
+        "They make asynchronous Promise-based code easier to write and read.",
+        "Web Development",
+        "JavaScript / TypeScript"
+    ),
+    (
+        "What is the JavaScript event loop?",
+        "It manages asynchronous tasks by coordinating the call stack and task queues.",
+        "Web Development",
+        "JavaScript / TypeScript"
+    ),
+
+
+    # =========================
+    # REACT.JS
+    # =========================
+
     (
         "What is a React component?",
-        "A React component is a reusable piece of UI that can accept data through props.",
+        "A React component is a reusable piece of UI.",
         "Web Development",
         "React.js"
     ),
     (
-        "What is middleware in Node.js?",
-        "Middleware is a function that runs during the request-response cycle and can modify the request or response.",
+        "What are props in React?",
+        "Props are inputs passed from a parent component to a child component.",
+        "Web Development",
+        "React.js"
+    ),
+    (
+        "What is state in React?",
+        "State stores data that can change and cause a component to re-render.",
+        "Web Development",
+        "React.js"
+    ),
+    (
+        "What is useEffect used for?",
+        "useEffect handles side effects such as API calls or subscriptions.",
+        "Web Development",
+        "React.js"
+    ),
+    (
+        "What is the virtual DOM?",
+        "It is a lightweight representation of the real DOM used for efficient updates.",
+        "Web Development",
+        "React.js"
+    ),
+
+
+    # =========================
+    # NODE.JS
+    # =========================
+
+    (
+        "What is Node.js?",
+        "Node.js is a JavaScript runtime that runs JavaScript outside the browser.",
         "Backend Development",
         "Node.js"
     ),
     (
+        "What is middleware in Node.js?",
+        "Middleware runs during the request-response cycle and can process requests.",
+        "Backend Development",
+        "Node.js"
+    ),
+    (
+        "What is Express.js?",
+        "Express.js is a framework for building web servers and APIs with Node.js.",
+        "Backend Development",
+        "Node.js"
+    ),
+    (
+        "What is an API?",
+        "An API allows different software applications to communicate with each other.",
+        "Backend Development",
+        "Node.js"
+    ),
+    (
+        "What is npm?",
+        "npm is the package manager used to install and manage Node.js packages.",
+        "Backend Development",
+        "Node.js"
+    ),
+
+
+    # =========================
+    # PYTHON
+    # =========================
+
+    (
+        "What is Python commonly used for?",
+        "Python is used for automation, backend development, data science, and AI.",
+        "Programming",
+        "Python"
+    ),
+    (
+        "What is a Python list?",
+        "A list is an ordered and mutable collection of items.",
+        "Programming",
+        "Python"
+    ),
+    (
+        "What is a Python dictionary?",
+        "A dictionary stores data as key-value pairs.",
+        "Programming",
+        "Python"
+    ),
+    (
+        "What is a function in Python?",
+        "A function is reusable code that performs a specific task.",
+        "Programming",
+        "Python"
+    ),
+    (
+        "What is object-oriented programming?",
+        "It organizes code using objects that contain data and behavior.",
+        "Programming",
+        "Python"
+    ),
+
+
+    # =========================
+    # SYSTEM DESIGN
+    # =========================
+
+    (
         "What is system design?",
-        "System design is the process of planning the architecture and components of a software system.",
+        "System design is the process of planning a software system architecture.",
         "Software Engineering",
         "System Design"
     ),
     (
         "What is horizontal scaling?",
-        "Horizontal scaling means adding more machines or instances to handle increased load.",
+        "Horizontal scaling adds more machines or instances to handle increased load.",
         "Software Engineering",
         "System Design"
     ),
     (
-        "What is Python commonly used for?",
-        "Python is commonly used for programming, automation, data processing, and backend development.",
-        "Programming",
-        "Python"
+        "What is vertical scaling?",
+        "Vertical scaling increases the resources of an existing machine.",
+        "Software Engineering",
+        "System Design"
     ),
     (
-        "What is the purpose of Agile?",
-        "Agile focuses on iterative development, collaboration, feedback, and adapting to changing requirements.",
+        "What is a load balancer?",
+        "A load balancer distributes incoming traffic across multiple servers.",
+        "Software Engineering",
+        "System Design"
+    ),
+    (
+        "What is caching?",
+        "Caching stores frequently used data for faster future access.",
+        "Software Engineering",
+        "System Design"
+    ),
+
+
+    # =========================
+    # COMMUNICATION
+    # =========================
+
+    (
+        "What is active listening?",
+        "Active listening means fully focusing on and understanding the speaker.",
+        "Communication",
+        "Communication"
+    ),
+    (
+        "What is constructive feedback?",
+        "Constructive feedback provides useful suggestions for improvement.",
+        "Communication",
+        "Communication"
+    ),
+    (
+        "Why is clear communication important?",
+        "It reduces misunderstandings and improves collaboration.",
+        "Communication",
+        "Communication"
+    ),
+    (
+        "What is stakeholder communication?",
+        "It is sharing relevant information with people involved in a project.",
+        "Communication",
+        "Communication"
+    ),
+    (
+        "What is effective team communication?",
+        "It involves clear, respectful, and timely sharing of information.",
+        "Communication",
+        "Communication"
+    ),
+
+
+    # =========================
+    # AGILE & SCRUM
+    # =========================
+
+    (
+        "What is Agile?",
+        "Agile is an iterative approach focused on collaboration and continuous improvement.",
+        "Project Management",
+        "Agile & Scrum"
+    ),
+    (
+        "What is Scrum?",
+        "Scrum is an Agile framework used to manage work in short iterations.",
+        "Project Management",
+        "Agile & Scrum"
+    ),
+    (
+        "What is a sprint?",
+        "A sprint is a fixed period during which a team completes planned work.",
+        "Project Management",
+        "Agile & Scrum"
+    ),
+    (
+        "What is a product backlog?",
+        "A product backlog is a prioritized list of work and requirements.",
+        "Project Management",
+        "Agile & Scrum"
+    ),
+    (
+        "Who is the Scrum Master?",
+        "The Scrum Master helps the team follow Scrum practices and removes obstacles.",
         "Project Management",
         "Agile & Scrum"
     )
