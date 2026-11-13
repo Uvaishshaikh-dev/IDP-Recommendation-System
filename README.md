@@ -1,9 +1,3 @@
-# Team Matrix 🚀
-
-Team Matrix is our SIH 2026 project based on an **Intelligent Recommendation System for Personalized Individual Development Plans (IDPs)**.
-
-The idea is simple: a person chooses a career goal, tells the system what they already know, and Team Matrix helps identify the skills they are missing and what they should work on next.
-
 ## What problem are we trying to solve?
 
 A lot of students know what career they want, but don't really know how to get there.
@@ -20,7 +14,6 @@ But then the real questions start:
 - What should I learn first?
 - How do I track whether I'm actually improving?
 
-Team Matrix tries to bring all of this into one place.
 
 ## How it works
 
