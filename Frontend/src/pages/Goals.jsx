@@ -3,23 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { roles } from '../data/mockData';
 import { useProfile } from '../context/ProfileContext';
 import { ArrowRight, Target } from 'lucide-react';
-import { getCareers, getStudent, setCareerGoal } from '../services/api';
+import { getCareers, setCareerGoal } from '../services/api';
 
 export default function Goals() {
   const navigate = useNavigate();
   const { profile, updateProfile } = useProfile();
 
   const [careers, setCareers] = useState([]);
-  const [student, setStudent] = useState(null);
 
   useEffect(() => {
     async function loadData() {
       try {
         const careersData = await getCareers();
-        const studentData = await getStudent(1);
-
         setCareers(careersData);
-        setStudent(studentData);
       } catch (error) {
         console.error(error);
       }
@@ -33,19 +29,29 @@ export default function Goals() {
       career => career.name === role.name
     );
 
-    const currentCareer = careers.find(
-      career => career.name === student?.current_career
-    );
+    if (!targetCareer) {
+      alert('Career not found');
+      return;
+    }
 
-    if (!targetCareer || !currentCareer) {
-      alert('Career information not found');
+    const savedUser = localStorage.getItem('idp-user');
+
+    if (!savedUser) {
+      alert('Please login again');
+      navigate('/login');
+      return;
+    }
+
+    const user = JSON.parse(savedUser);
+
+    if (!user.student_id) {
+      alert('Student account not found');
       return;
     }
 
     try {
       await setCareerGoal({
-        student_id: 1,
-        current_career_id: currentCareer.id,
+        student_id: user.student_id,
         target_career_id: targetCareer.id
       });
 
@@ -55,6 +61,7 @@ export default function Goals() {
       });
 
       navigate('/assessment');
+
     } catch (error) {
       console.error(error);
       alert('Failed to save career goal');
