@@ -68,11 +68,15 @@ export default function Flashcards() {
     return [
       ...new Set(
         flashcards
+          .filter(card =>
+            skillFilter === 'all' ||
+            card.skill === skillFilter
+          )
           .map(card => card.subject)
           .filter(Boolean)
       )
     ].sort();
-  }, [flashcards]);
+  }, [flashcards, skillFilter]);
 
   const matchingCards = useMemo(() => {
     return flashcards.filter(card => {
@@ -100,6 +104,9 @@ export default function Flashcards() {
 
   const changeSkillFilter = value => {
     setSkillFilter(value);
+
+    setSubjectFilter('all');
+
     setCardIndex(0);
     setIsFlipped(false);
   };
