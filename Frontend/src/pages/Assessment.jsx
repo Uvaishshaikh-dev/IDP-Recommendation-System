@@ -34,6 +34,9 @@ export default function Assessment() {
                         getSkills(),
                         getCareers()
                     ]);
+                
+                console.log("SKILLS:", skillsData);
+                console.log("CAREERS:", careersData);
 
                 setBackendSkills(skillsData);
                 setCareers(careersData);
